@@ -45,4 +45,118 @@
             background: rgba(255, 255, 255, 0.15);
             transform: translateY(-3px);
         }
+  .window-container {
+            width: 85%;
+            max-width: 1000px;
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+  .tabs-bar {
+            display: flex;
+            align-items: flex-end;
+            height: 50px;
+            padding-left: 20px;
+        }
+  
+  .tab {
+            background: rgba(0, 0, 0, 0.4);
+            color: #ccc;
+            padding: 10px 20px;
+            margin-left: 5px;
+            border-radius: 10px 10px 0 0;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-bottom: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+  .tab:hover, .tab.active {
+            background: rgba(255, 255, 255, 0.85);
+            color: #111;
+            backdrop-filter: none;
+
+   .main-content {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.85); /* Hafif şeffaf beyaz */
+            backdrop-filter: blur(20px); /* Arka planı bulanıklaştıran Aero efekti */
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 0 15px 15px 15px; /* Logoya birleştiği yer düz kalır */
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            color: #222;
+            overflow-y: auto;
+            z-index: 1;
+            margin-top: -1px;
+
+    .page-content {
+            display: none;
+        }
+
+        .page-content.active {
+            display: block;
+        }
+
+        h2 {
+            margin-top: 0;
+            color: #111;
+        }
     </style>
+ <body>
+
+    <div class="window-container">
+        
+        <div class="tabs-bar">
+            <div class="logo-tab">LearDeeBee</div>
+            
+            <div class="tab active" onclick="switchTab('anasayfa')">Home</div>
+            <div class="tab" onclick="switchTab('projeler')">Projects</div>
+            <div class="tab" onclick="switchTab('iletisim')">Download</div>
+        </div>
+
+        <div class="main-content">
+            
+            <div id="anasayfa" class="page-content active">
+                <h2>Welcome!</h2>
+                <p>Welcome to my site , i share my projects , realaeses and more.</p>
+            </div>
+
+            <div id="projeler" class="page-content">
+                <h2>Geliştirdiğim Projeler</h2>
+                <p><strong>Gemini4Life:</strong> A project for using gemini for free.</p>
+            </div>
+
+            <div id="iletisim" class="page-content">
+                <h2>Links</h2>
+                <p>U can see my github page in here:</p>
+                <p><a href="https://github.com/LearDeeBee" target="_blank" style="color: #0066cc; font-weight: bold;">GitHub Profilim</a></p>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function switchTab(pageId) {
+            // Tüm içerikleri gizle
+            const pages = document.querySelectorAll('.page-content');
+            pages.forEach(page => page.classList.remove('active'));
+
+            // Tüm sekmelerin aktifliğini kaldır
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            // Tıklanan sayfayı ve sekmeyi aktif yap
+            document.getElementById(pageId).classList.add('active');
+            
+            // Tıklanan sekmeyi bulup "active" sınıfını ekle
+            event.currentTarget.classList.add('active');
+        }
+    </script>
+
+</body>
+</html>
