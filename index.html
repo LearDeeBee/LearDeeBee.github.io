@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<title>LearDeeBee - Home</title>        
- <style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LearDeeBee | Home</title>
+    <style>
+        /* --- 1. ARKA PLAN AYARLARI --- */
         body {
             margin: 0;
             padding: 0;
@@ -9,152 +13,151 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            color: white;
-            font-family: 'Segoe UI', sans-serif;
-            
-            /* İSTEDİĞİN ARKA PLAN BURADA */
-            background-image: url('Background.png'); 
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-image: url('Background.jpg'); /* Arka plan resmin */
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
         }
 
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.1); /* Şeffaf beyaz */
-            backdrop-filter: blur(20px); /* Windows 7 bulanıklık efekti */
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 25px;
-            padding: 40px;
-            width: 85%;
-            max-width: 700px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            text-align: center;
-        }
-
-        .project-card {
-            background: rgba(0, 0, 0, 0.3);
-            margin: 15px 0;
-            padding: 15px;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: 0.3s;
-        }
-
-        .project-card:hover {
-            background: rgba(255, 255, 255, 0.15);
-            transform: translateY(-3px);
-        }
-  .window-container {
-            width: 85%;
+        /* --- 2. ANA TAŞIYICI (Pencere) --- */
+        .app-container {
+            width: 90%;
             max-width: 1000px;
-            height: 80vh;
-            display: flex;
-            flex-direction: column;
-            position: relative;
+            margin-top: 20px;
         }
 
-  .tabs-bar {
+        /* --- 3. SEKME ÇUBUĞU --- */
+        .tab-header {
             display: flex;
-            align-items: flex-end;
-            height: 50px;
-            padding-left: 20px;
+            align-items: flex-end; /* Sekmeleri alt çizgiye hizala */
+            gap: 5px; /* Sekmeler arası boşluk */
         }
-  
-  .tab {
-            background: rgba(0, 0, 0, 0.4);
-            color: #ccc;
-            padding: 10px 20px;
-            margin-left: 5px;
-            border-radius: 10px 10px 0 0;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-bottom: none;
+
+        /* En Soldaki Logo Yazısı */
+        .logo-text {
+            color: #ffffff;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-right: 30px;
+            padding-bottom: 12px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        /* Normal (Pasif) Sekmeler */
+        .tab {
+            padding: 12px 25px;
+            background-color: rgba(0, 0, 0, 0.6); /* Koyu şeffaf */
+            color: #ffffff;
+            font-weight: bold;
+            border-radius: 10px 10px 0 0; /* Sadece üst köşeler yuvarlak */
             cursor: pointer;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            transition: background 0.3s ease;
         }
 
-  .tab:hover, .tab.active {
-            background: rgba(255, 255, 255, 0.85);
-            color: #111;
-            backdrop-filter: none;
-
-   .main-content {
-            flex: 1;
-            background: rgba(255, 255, 255, 0.85); /* Hafif şeffaf beyaz */
-            backdrop-filter: blur(20px); /* Arka planı bulanıklaştıran Aero efekti */
-            -webkit-backdrop-filter: blur(20px);
-            border-radius: 0 15px 15px 15px; /* Logoya birleştiği yer düz kalır */
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            padding: 30px;
-            color: #222;
-            overflow-y: auto;
-            z-index: 1;
-            margin-top: -1px;
-
-    .page-content {
-            display: none;
+        .tab:hover {
+            background-color: rgba(0, 0, 0, 0.8);
         }
 
-        .page-content.active {
-            display: block;
+        /* Aktif Olan (Beyaz) Sekme */
+        .tab.active {
+            background-color: #ffffff; /* Ana kutuyla aynı renk */
+            color: #000000;
         }
 
+        /* --- 4. ANA İÇERİK KUTUSU (Beyaz Alan) --- */
+        .main-content {
+            background-color: #ffffff; /* Bembeyaz arka plan */
+            border-radius: 0 10px 10px 10px; /* Sağ ve alt köşeler yuvarlak */
+            padding: 40px;
+            min-height: 400px; /* Kutunun belli bir boyu olsun */
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5); /* Gölgelendirme */
+        }
+
+        /* Sayfaları Gizleme Sınıfı */
+        .page {
+            display: none; /* Sayfalar başta gizli */
+        }
+
+        /* Sadece Aktif Sayfa Görünür */
+        .page.active {
+            display: block; /* Animasyon veya ekstra kod hatası vermez */
+        }
+
+        /* --- 5. İÇERİK YAZI STİLLERİ --- */
         h2 {
             margin-top: 0;
-            color: #111;
+            color: #1a1a1a;
+            border-bottom: 2px solid #eeeeee;
+            padding-bottom: 10px;
+        }
+        p {
+            color: #333333;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+        a {
+            color: #0056b3;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        a:hover {
+            text-decoration: underline;
         }
     </style>
- <body>
+</head>
+<body>
 
-    <div class="window-container">
+    <div class="app-container">
         
-        <div class="tabs-bar">
-            <div class="logo-tab">LearDeeBee</div>
-            
-            <div class="tab active" onclick="switchTab('anasayfa')">Home</div>
-            <div class="tab" onclick="switchTab('projeler')">Projects</div>
-            <div class="tab" onclick="switchTab('iletisim')">Download</div>
+        <div class="tab-header">
+            <div class="logo-text">LearDeeBee</div>
+            <div class="tab active" onclick="openTab(event, 'home')">Home</div>
+            <div class="tab" onclick="openTab(event, 'projects')">Projects</div>
+            <div class="tab" onclick="openTab(event, 'download')">Download</div>
         </div>
 
         <div class="main-content">
             
-            <div id="anasayfa" class="page-content active">
+            <div id="home" class="page active">
                 <h2>Welcome!</h2>
-                <p>Welcome to my site , i share my projects , realaeses and more.</p>
+                <p>Welcome to my site, I share my projects, releases and more.</p>
             </div>
 
-            <div id="projeler" class="page-content">
-                <h2>Geliştirdiğim Projeler</h2>
-                <p><strong>Gemini4Life:</strong> A project for using gemini for free.</p>
+            <div id="projects" class="page">
+                <h2>Projects I have developed</h2>
+                <p><strong>Gemini4Life:</strong> A project for using Gemini for free.</p>
+                <p>More projects comes soon!</p>
             </div>
 
-            <div id="iletisim" class="page-content">
-                <h2>Links</h2>
-                <p>U can see my github page in here:</p>
-                <p><a href="https://github.com/LearDeeBee" target="_blank" style="color: #0066cc; font-weight: bold;">GitHub Profilim</a></p>
+            <div id="download" class="page">
+                <h2>Download</h2>
+                <p>You can download my projects from here</p>
+                <p><a href="https://github.com/LearDeeBee" target="_blank">Go to my github profile</a></p>
             </div>
 
         </div>
     </div>
 
     <script>
-        function switchTab(pageId) {
-            // Tüm içerikleri gizle
-            const pages = document.querySelectorAll('.page-content');
-            pages.forEach(page => page.classList.remove('active'));
+        function openTab(evt, tabName) {
+            // 1. Tüm sayfaları bul ve gizle
+            let pages = document.querySelectorAll('.page');
+            for (let i = 0; i < pages.length; i++) {
+                pages[i].style.display = "none";
+                pages[i].classList.remove("active");
+            }
 
-            // Tüm sekmelerin aktifliğini kaldır
-            const tabs = document.querySelectorAll('.tab');
-            tabs.forEach(tab => tab.classList.remove('active'));
+            // 2. Tüm sekmelerin "active" sınıfını (beyaz rengini) kaldır
+            let tabs = document.querySelectorAll('.tab');
+            for (let i = 0; i < tabs.length; i++) {
+                tabs[i].classList.remove("active");
+            }
 
-            // Tıklanan sayfayı ve sekmeyi aktif yap
-            document.getElementById(pageId).classList.add('active');
-            
-            // Tıklanan sekmeyi bulup "active" sınıfını ekle
-            event.currentTarget.classList.add('active');
+            // 3. Tıklanan sekmeyi beyaz yap ve ilgili sayfayı göster
+            document.getElementById(tabName).style.display = "block";
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
         }
     </script>
 
